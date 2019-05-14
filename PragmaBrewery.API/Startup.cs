@@ -4,9 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PragmaBrewery.API.Contracts.Containers;
 using PragmaBrewery.API.Domain.Repositories;
 using PragmaBrewery.API.Infrastructure.Data;
 using PragmaBrewery.API.Infrastructure.Repositories;
+using PragmaBrewery.API.Services;
 
 namespace PragmaBrewery.API
 {
@@ -30,6 +32,8 @@ namespace PragmaBrewery.API
 
             services.AddScoped<IBeerRepository, BeerRepository>();
             services.AddScoped<IContainerRepository, ContainerRepository>();
+
+            services.AddScoped<IContainerService, ContainerService>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
