@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PragmaBrewery.API.Domain.Repositories;
 using PragmaBrewery.API.Infrastructure.Data;
+using PragmaBrewery.API.Infrastructure.Repositories;
 
 namespace PragmaBrewery.API
 {
@@ -25,6 +27,9 @@ namespace PragmaBrewery.API
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddScoped<IBeerRepository, BeerRepository>();
+            services.AddScoped<IContainerRepository, ContainerRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
