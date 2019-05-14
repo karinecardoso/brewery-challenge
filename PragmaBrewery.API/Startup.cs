@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PragmaBrewery.API.Infrastructure.Data;
 
 namespace PragmaBrewery.API
 {
@@ -17,6 +19,11 @@ namespace PragmaBrewery.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<PragmaBreweryDbContext>(options =>
+            {
+                options.UseInMemoryDatabase("pragma-brewery-api-in-memory");
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
